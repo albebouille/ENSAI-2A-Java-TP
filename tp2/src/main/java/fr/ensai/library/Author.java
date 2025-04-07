@@ -1,34 +1,30 @@
 package fr.ensai.library;
 
+import fr.ensai.library.Person;
 import java.util.Objects;
 
 /**
  * Represents an Author.
  */
-public class Author {
+public class Author extends Person {
 
     // Attributes
-    private String name;
-    private int age;
     private String nationality;
 
-    /**
-     * Constructs a new Book object.
-     */
     public Author(String name, int age, String nationality) {
-        this.name = name;
-        this.age = age;
+        super(name, age); // Appelle le constructeur de Person
         this.nationality = nationality;
     }
 
-    public String getName() {
-        return this.name;
+    public Author(String name){
+        super(name, 666);
+        this.nationality = "fdp";
     }
 
-    /**
-     * Indicates whether some other object is "equal to" this one.
-     * Two authors are considered equal if their names are equal.
-     */
+    public String getNationality() {
+        return nationality;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -37,12 +33,14 @@ public class Author {
             return false;
 
         Author author = (Author) obj;
-        return Objects.equals(name, author.name);
+        return Objects.equals(getName(), author.getName());
     }
 
+    /**
+     * Returns a string representation of the author.
+     */
     @Override
     public String toString() {
-        return "Author " + name;
+        return "Author " + getName() + ", Nationality: " + getNationality();
     }
-
 }
